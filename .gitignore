@@ -218,3 +218,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local secrets and generated database sidecars
+.env.*
+!.env.example
+*.db-journal
+*.db-wal
+*.db-shm

@@ -1,0 +1,7 @@
+UPI_Remitter_Banks,Date,Approved_percent,Bank_Decline_percent,Technical_Decline_percent,Debit_Reversal_Success_percent,Total_Debit_Reversal_Count_In_Million,Total_Volume_In_Million,Reversal_Rate_Original,Reversal_Rate_Rescaled
+AU Small Finance Bank,2024-07-01,0.8518,0.1437,0.0045,0.9152,0.08,20.27,0.9152,False
+AU Small Finance Bank,2024-07-01,0.9376,0.0623,0.0002,0.9322,0.18,48.46,0.9322,False
+HDFC Bank,2023-12-01,0.9417,0.0561,0.0021,0.9749,0.16,19.02,0.9749,False
+HDFC Bank,2024-06-01,0.9519,0.0466,0.0015,0.2354,0.21,31.15,0.2354,False
+HDFC Bank,2024-06-01,0.9543,0.0434,0.0023,0.3691,6.03,1191.85,0.3691,False
+HDFC Bank,2023-12-01,0.965,0.0344,0.0006,0.9757,3.63,1040.77,0.9757,False
