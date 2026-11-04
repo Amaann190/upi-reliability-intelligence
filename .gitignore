@@ -225,3 +225,18 @@ __marimo__/
 *.db-journal
 *.db-wal
 *.db-shm
+
+# Power BI user-specific cache
+**/.pbi/cache.abf
+**/.pbi/localSettings.json
+**/.pbi/unappliedChanges.json
+
+# Intermediate Desktop Save As project
+/powerbi/UPI_Reliability.pbix.Report/
+/powerbi/UPI_Reliability.pbix.SemanticModel/
+/powerbi/UPI_Reliability.pbix.pbip
+
+# Exclude the intermediate Save As copy of the corrected project
+/powerbi/UPI_Reliability_Updated.pbix.Report/
+/powerbi/UPI_Reliability_Updated.pbix.SemanticModel/
+/powerbi/UPI_Reliability_Updated.pbix.pbip

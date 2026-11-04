@@ -231,6 +231,8 @@ history = df[
     df["bank_name"] == selected_bank
 ].sort_values("report_month")
 
+history = history.set_index("report_month").asfreq("MS").reset_index()
+
 fig_history = px.line(
     history,
     x="report_month",
@@ -242,6 +244,8 @@ fig_history = px.line(
         "technical_decline_pct": "Technical Declines (%)"
     }
 )
+
+fig_history.update_traces(connectgaps=False)
 
 st.plotly_chart(fig_history, width="stretch")
 

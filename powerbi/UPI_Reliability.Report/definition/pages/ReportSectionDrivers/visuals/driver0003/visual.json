@@ -1,0 +1,158 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "driver0003",
+  "position": {
+    "x": 20,
+    "y": 195,
+    "width": 1230,
+    "height": 515,
+    "z": 3,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Drivers"
+                    }
+                  },
+                  "Property": "Month"
+                }
+              },
+              "queryRef": "Drivers.Month",
+              "nativeQueryRef": "Month"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Drivers"
+                    }
+                  },
+                  "Property": "Bank"
+                }
+              },
+              "queryRef": "Drivers.Bank",
+              "nativeQueryRef": "Bank"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Drivers"
+                    }
+                  },
+                  "Property": "Coverage"
+                }
+              },
+              "queryRef": "Drivers.Coverage",
+              "nativeQueryRef": "Coverage"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Drivers"
+                    }
+                  },
+                  "Property": "Rate change pp"
+                }
+              },
+              "queryRef": "Drivers.Rate change pp",
+              "nativeQueryRef": "Rate change pp"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Drivers"
+                    }
+                  },
+                  "Property": "Volume change M"
+                }
+              },
+              "queryRef": "Drivers.Volume change M",
+              "nativeQueryRef": "Volume change M"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Drivers"
+                    }
+                  },
+                  "Property": "Contribution pp"
+                }
+              },
+              "queryRef": "Drivers.Contribution pp",
+              "nativeQueryRef": "Contribution pp"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Drivers"
+                    }
+                  },
+                  "Property": "Rate effect pp"
+                }
+              },
+              "queryRef": "Drivers.Rate effect pp",
+              "nativeQueryRef": "Rate effect pp"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Drivers"
+                    }
+                  },
+                  "Property": "Mix and coverage pp"
+                }
+              },
+              "queryRef": "Drivers.Mix and coverage pp",
+              "nativeQueryRef": "Mix and coverage pp"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bank contribution to monthly change - percentage points'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

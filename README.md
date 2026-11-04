@@ -1,6 +1,12 @@
 # UPI Reliability Intelligence
 
-### Payment Failure Analysis | Python · SQL · Streamlit
+**[Download the populated Power BI report](powerbi/UPI_Reliability.pbix)** and open it in Power BI Desktop. The charts work offline.
+
+
+Open [UPI Reliability in Power BI Desktop](powerbi/UPI_Reliability.pbip) and choose **Home → Refresh**. The report includes all reporting months. The overview opens on November 2024. Clear the reporting-month dropdown to explore the full period. Each eligible bank-month has at least one million reported transactions.
+
+
+### Payment Failure Analysis | Python · SQL · Power BI · Streamlit
 
 A historical UPI analytics project that helps an analyst answer two different questions: **which remitter banks have the highest technical-decline rates, and which account for the most estimated declined transactions?**
 
@@ -28,7 +34,11 @@ These results were reproduced locally on 29 October 2026. They describe the sele
 
 **A useful finding:** Andhra Pragathi Grameena Bank and Kerala Gramin Bank had the highest technical-decline rate in this selection, at 5.89%. State Bank of India had the highest estimated technical-decline volume, about 23.84 million, despite a lower rate of 0.57%. Rate and impact rankings support different investigation priorities; neither establishes a root cause.
 
-## Dashboard features
+## Power BI dashboard
+
+The overview reports transaction volume in billions, weighted approval and weighted technical declines. The monthly drivers page breaks down rate and coverage effects by bank.
+
+## Streamlit dashboard features
 
 - Reporting-month selection and minimum-volume filter.
 - Adjustable technical-decline review threshold.
@@ -62,7 +72,7 @@ The source data is included for reproducibility with attribution. It is not orig
 4. Quarantine **all rows** for duplicated bank-month keys rather than arbitrarily selecting one. See `data/processed/conflicting_bank_months.csv`.
 5. Store the retained observations in SQLite as `bank_monthly`.
 
-The reversal correction is a documented assumption, not a source-confirmed repair. Missing bank-month observations are not imputed; the current trend chart connects available observations.
+The reversal correction is a documented assumption, not a source-confirmed repair. Missing bank-month observations are not imputed; the Streamlit bank trend leaves gaps at missing months.
 
 ## Methodology
 
@@ -144,3 +154,9 @@ These are dataset integrity and regression checks. They do not independently val
 ## Possible next steps
 
 Add controlled-input tests for shared calculation functions, verify provisional corrections against original publications, and show missing periods explicitly in historical charts. These are future improvements, not completed features.
+
+## Power BI refresh on another computer
+
+In Power BI Desktop, choose **Transform data → Edit parameters**. Set **DataFolder** to the absolute path of this repository’s `data/processed` directory, then select **Refresh**. The saved PBIX uses its imported snapshot until refreshed.
+
+Run `python monthly_drivers.py` after cleaning the data. On **Monthly decline drivers**, select a month. Contribution is the change in each bank’s share of system-wide technical declines per transaction, in percentage points. For banks eligible in both months, the rate effect uses the average of the two volume weights. The remainder captures volume mix and entry or exit from coverage. Missing banks have no observed rate change.
