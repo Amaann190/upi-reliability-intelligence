@@ -1,3 +1,5 @@
+<picture><source media="(prefers-color-scheme: light)" srcset="docs/images/banner-light.svg"><img src="docs/images/banner.svg" width="100%" alt="UPI Reliability Intelligence: 16.2B UPI transactions covered across 59 banks"></picture>
+
 # UPI Reliability Intelligence
 
 ### Payment Failure Analysis | Python · SQL · Power BI · Streamlit
