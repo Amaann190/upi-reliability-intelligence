@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "visual0005",
   "position": {
     "x": 12,
     "y": 167,
-    "width": 884,
-    "height": 228,
     "z": 4,
+    "height": 228,
+    "width": 884,
     "tabOrder": 4
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Reliability.Month",
-              "nativeQueryRef": "Month"
+              "nativeQueryRef": "Month",
+              "active": true
             }
           ]
         },
@@ -65,7 +66,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Technical decline rate by month'"
+                  "Value": "'Technical decline rate by month, all reporting months'"
                 }
               }
             }

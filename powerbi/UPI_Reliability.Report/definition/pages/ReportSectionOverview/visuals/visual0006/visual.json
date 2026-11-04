@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "visual0006",
   "position": {
     "x": 12,
     "y": 409,
-    "width": 476,
-    "height": 315,
     "z": 5,
+    "height": 315,
+    "width": 476,
     "tabOrder": 5
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Reliability.Bank",
-              "nativeQueryRef": "Bank"
+              "nativeQueryRef": "Bank",
+              "active": true
             }
           ]
         },

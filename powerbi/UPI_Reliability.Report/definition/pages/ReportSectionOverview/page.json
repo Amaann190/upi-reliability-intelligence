@@ -4,5 +4,12 @@
   "displayName": "UPI Reliability",
   "displayOption": "FitToPage",
   "width": 1280,
-  "height": 740
+  "height": 740,
+  "visualInteractions": [
+    {
+      "source": "visual0008",
+      "target": "visual0005",
+      "type": "NoFilter"
+    }
+  ]
 }

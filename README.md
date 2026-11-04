@@ -1,18 +1,14 @@
 # UPI Reliability Intelligence
 
-**[Download the populated Power BI report](powerbi/UPI_Reliability.pbix)** and open it in Power BI Desktop. The charts work offline.
-
-
-Open [UPI Reliability in Power BI Desktop](powerbi/UPI_Reliability.pbip) and choose **Home → Refresh**. The report includes all reporting months. The overview opens on November 2024. Clear the reporting-month dropdown to explore the full period. Each eligible bank-month has at least one million reported transactions.
-
-
 ### Payment Failure Analysis | Python · SQL · Power BI · Streamlit
 
 A historical UPI analytics project that helps an analyst answer two different questions: **which remitter banks have the highest technical-decline rates, and which account for the most estimated declined transactions?**
 
-It takes bank-month data through inspection, quality checks, documented cleaning, SQLite storage and an interactive dashboard. Built as a fintech internship portfolio project by [Amaan Shaikh](https://github.com/amaann190).
+It takes bank-month data through inspection, quality checks, documented cleaning, SQLite storage, a Power BI report and an interactive Streamlit dashboard. Built as a fintech internship portfolio project by [Amaan Shaikh](https://github.com/amaann190).
 
-![Dashboard overview showing November 2024 metrics and bank rankings](docs/images/dashboard-overview.png)
+**[Download the Power BI report](powerbi/UPI_Reliability.pbix)** (opens offline in Power BI Desktop) · [Power BI pages](#power-bi-report) · [Streamlit dashboard](#streamlit-dashboard)
+
+![Power BI overview: November 2024 KPIs, decline-rate trend since January 2022, and bank rankings](docs/images/powerbi-overview.png)
 
 ## Business problem
 
@@ -34,11 +30,26 @@ These results were reproduced locally on 29 October 2026. They describe the sele
 
 **A useful finding:** Andhra Pragathi Grameena Bank and Kerala Gramin Bank had the highest technical-decline rate in this selection, at 5.89%. State Bank of India had the highest estimated technical-decline volume, about 23.84 million, despite a lower rate of 0.57%. Rate and impact rankings support different investigation priorities; neither establishes a root cause.
 
-## Power BI dashboard
+## Power BI report
 
-The overview reports transaction volume in billions, weighted approval and weighted technical declines. The monthly drivers page breaks down rate and coverage effects by bank.
+[`powerbi/UPI_Reliability.pbix`](powerbi/UPI_Reliability.pbix) has two pages. Its source is also stored as a Power BI project ([`UPI_Reliability.pbip`](powerbi/UPI_Reliability.pbip)), so the model and every visual are readable JSON under version control.
 
-## Streamlit dashboard features
+**1. UPI Reliability (overview).** Pick a reporting month (it opens on November 2024) and optionally a bank. The cards show transaction volume in billions, volume-weighted approval and volume-weighted technical declines. The trend line always shows every reporting month from January 2022, so the selected month can be read against its history; choosing a bank turns it into that bank's trend. Below, banks are ranked by estimated technical declines, with rate and volume side by side. *(Screenshot at the top of this page.)*
+
+**2. Monthly decline drivers.** Pick a reporting month to see which banks moved the system-wide technical-decline rate compared with the month before. The chart puts the largest movers in either direction first; the table splits each bank's contribution into a **rate effect** (its own decline rate changed) and **mix and coverage** (its share of volume changed, or it entered or left coverage).
+
+![Power BI monthly decline drivers for November 2024: State Bank of India accounts for most of the fall](docs/images/powerbi-drivers.png)
+
+**What it shows for November 2024:** the system-wide technical-decline rate fell by about **0.20 percentage points** from October. **State Bank of India alone contributed −0.27 pp**, because its own decline rate dropped by 1.04 points on the largest volume in the data. Most other banks moved slightly the other way: 27 of 50 added to the decline rate, led by Bank of India (+0.03 pp). One large bank's improvement hid a small, broad deterioration.
+
+Each eligible bank-month has at least one million reported transactions. Contribution is the change in each bank's share of system-wide technical declines per transaction. For banks eligible in both months, the rate effect uses the average of the two months' volume weights; the remainder is volume mix and entry or exit from coverage. A bank missing from one month has no observed rate change.
+
+**Refreshing on another computer.** In Power BI Desktop choose **Transform data → Edit parameters**, set **DataFolder** to the absolute path of this repository's `data/processed` folder, then select **Refresh**. Run `python monthly_drivers.py` after cleaning the data to rebuild the drivers table. Until refreshed, the PBIX shows its saved snapshot.
+
+## Streamlit dashboard
+
+The same data as an interactive web app (`streamlit run app.py`):
+
 
 - Reporting-month selection and minimum-volume filter.
 - Adjustable technical-decline review threshold.
@@ -46,6 +57,8 @@ The overview reports transaction volume in billions, weighted approval and weigh
 - Top-ten rankings by decline rate and estimated decline volume.
 - Historical technical-decline trends for a selected bank.
 - Flagged-bank table and expandable detailed records.
+
+![Streamlit dashboard overview showing November 2024 metrics and bank rankings](docs/images/dashboard-overview.png)
 
 ![Five banks flagged at the illustrative 3 percent review threshold](docs/images/review-flags.png)
 
@@ -130,10 +143,12 @@ Optional inspection commands:
 | `build_database.py` | Create SQLite `bank_monthly` and query latest rankings |
 | `analyze_reliability.py` | Calculate latest-month KPIs, rankings and review flags |
 | `app.py` | Interactive Streamlit dashboard |
+| `monthly_drivers.py` | Split each month's change in technical declines into bank rate and mix effects |
+| `powerbi/` | Power BI report (`.pbix`) and its project source (`.pbip`) |
 | `tests/test_analytics.py` | Five data-integrity and regression checks |
 | `data/raw/` | Attributed source CSV |
 | `data/processed/` | Reproducible cleaned data, quarantine report, metrics and database |
-| `docs/images/` | Screenshots of the running application |
+| `docs/images/` | Screenshots of the Power BI report and the Streamlit app |
 
 ## Validation
 
@@ -154,9 +169,3 @@ These are dataset integrity and regression checks. They do not independently val
 ## Possible next steps
 
 Add controlled-input tests for shared calculation functions, verify provisional corrections against original publications, and show missing periods explicitly in historical charts. These are future improvements, not completed features.
-
-## Power BI refresh on another computer
-
-In Power BI Desktop, choose **Transform data → Edit parameters**. Set **DataFolder** to the absolute path of this repository’s `data/processed` directory, then select **Refresh**. The saved PBIX uses its imported snapshot until refreshed.
-
-Run `python monthly_drivers.py` after cleaning the data. On **Monthly decline drivers**, select a month. Contribution is the change in each bank’s share of system-wide technical declines per transaction, in percentage points. For banks eligible in both months, the rate effect uses the average of the two volume weights. The remainder captures volume mix and entry or exit from coverage. Missing banks have no observed rate change.

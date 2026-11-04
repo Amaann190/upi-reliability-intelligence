@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "UPI_Reliability"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "beca4a63-17c9-4543-9123-c5379925ccd7"
+  }
+}
